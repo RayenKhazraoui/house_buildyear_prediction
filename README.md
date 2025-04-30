@@ -1,51 +1,53 @@
-# 🏠 Dutch House Construction Year Prediction with Transfer Learning (EfficientNetB0)
+# Dutch House Construction Year Prediction with Transfer Learning (EfficientNetB0)
 
-This project applies **transfer learning** using an **EfficientNetB0** model to predict the **construction year** of houses in the Netherlands, based on Google Street View images.
+This project uses transfer learning with an EfficientNetB0 model to predict the construction year of houses in the Netherlands based on Google Street View images.
 
 ---
 
-## 📸 Project Overview
+## Project Overview
 
-### 🔍 Objective
-The goal is to estimate the construction year of Dutch homes using exterior visual features captured from Google Maps imagery.
+### Objective
 
-### 📁 Dataset
-- **Source**: The **DAG-register** (Datasets Achtergrondgegevens Gebouwen), an open dataset containing:
-  - Coordinates (lat/lon) of buildings in the Netherlands
-  - Registered **year of construction** for each building
+The goal of this project is to estimate the construction year of Dutch homes using visual features from exterior images retrieved through Google Maps.
+
+### Dataset
+
+- **Source**: The DAG-register (Datasets Achtergrondgegevens Gebouwen), an open dataset that contains:
+  - Geographic coordinates of all buildings in the Netherlands
+  - Official construction years
 - **Sampling**:
   - 25,000 buildings were randomly selected
-  - Street View images were collected for each building using the **Google Maps API**
+  - Google Street View images were collected for each using the Google Maps API
 
-### 🧭 Camera Orientation
-To ensure that each building is properly visible in the Street View image:
-- The camera heading was automatically calculated using the angle between the **available Street View location** and the building’s actual coordinates
-- This method ensures that the front facade is generally well-captured
+### Camera Orientation
 
----
-
-## 🤖 Model Architecture
-
-- Base model: **EfficientNetB0** with pretrained **ImageNet** weights
-- The **top 4 layers** of the model were unfrozen for fine-tuning
-- The model outputs **classification logits** over **13 bins** of construction years (each bin covers a decade, e.g. `1900–1909`, `1910–1919`, ..., `2020–2029`)
+To ensure that each house is clearly visible in the image:
+- The Street View camera heading was computed based on the angle between the building's coordinates and the closest available Street View location
+- This method aimed to frame the front of each house as accurately as possible
 
 ---
 
-## 📊 Results
+## Model Architecture
 
-- ✅ **Top-1 Accuracy**: ~40%
-- 🔢 **Number of bins**: 13
-- ⚖️ Random baseline: ~7.7%
-- 📉 Most incorrect predictions were within ±1 bin of the actual construction year
+- EfficientNetB0 was used with pretrained ImageNet weights
+- The top four layers were unfrozen for fine-tuning
+- The output layer classifies into 13 decade-based bins, such as 1900–1909, 1910–1919, ..., 2020–2029
 
-This level of accuracy is decent, considering the subtle differences in architectural features across decades.
+---
 
-## 🖼️ Prediction Examples
+## Results
+
+- Accuracy for exact bin prediction: approximately 40%
+- Total number of bins: 13
+- A random guess would result in about 7.7% accuracy
+- Most errors were within one bin of the correct decade
+
+Given the subtle differences between houses built in different decades, this is a fairly strong performance.
+
+---
+
+## Prediction Examples
 
 <img src="prediction_1.jpeg" width="200"/>
 <img src="prediction_2.jpeg" width="200"/>
 <img src="prediction_3.jpeg" width="200"/>
-
----
-

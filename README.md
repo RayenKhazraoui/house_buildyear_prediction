@@ -44,13 +44,13 @@ This level of accuracy is decent, considering the subtle differences in architec
 ## 🖼️ Prediction Examples
 
 ### 🏠 Example 1
-![Prediction 1](prediction_1.jpg)
+![Prediction 1](prediction_1.JPEG)
 
 ### 🏠 Example 2
-![Prediction 2](prediction_2.jpg)
+![Prediction 2](prediction_2.JPEG)
 
 ### 🏠 Example 3
-![Prediction 3](prediction_3.jpg)
+![Prediction 3](prediction_3.JPEG)
 
 
 ---
